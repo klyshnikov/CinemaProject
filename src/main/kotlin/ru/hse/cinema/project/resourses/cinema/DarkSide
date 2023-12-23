@@ -1,0 +1,1 @@
+{"start":"2023-11-24","end":"2023-12-31","seats":[{"number":0,"empty":true},{"number":1,"client":{"name":"Pink"},"empty":false},{"number":2,"client":{"name":"Pink"},"empty":true},{"number":3,"empty":true},{"number":4,"empty":true}],"name":"DarkSide","seatsNumber":5}
