@@ -28,7 +28,11 @@ class ApiManager(val api : Api) {
                 api.getEmpty(line)
             } else if (command == "get-books") {
                 api.getBooks(line)
-            } else if (command == "help" || command == "-help" || command == "--help") {
+            } else if (command == "check") {
+                api.check(line)
+            } else if (command == "commands") {
+                api.commands()
+            } else if (command == "help") {
                 api.help()
             } else if (command == "exit") {
                 api.isRunning = false

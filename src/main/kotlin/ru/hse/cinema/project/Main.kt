@@ -8,7 +8,8 @@ fun main() {
     val api = ConsoleApi()
     val apiManager = ApiManager(api)
 
-    println("help")
+    println("commands - команды")
+    println("help - расширенное описание команд")
     var input : String = ""
 
     while (api.isRunning) {

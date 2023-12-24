@@ -14,6 +14,7 @@ import java.nio.charset.Charset
 import kotlin.io.path.Path
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import ru.hse.cinema.project.dao.exceptions.TimeNoMatchException
 import ru.hse.cinema.project.models.Seat
 import java.io.FileNotFoundException
 import java.text.SimpleDateFormat
@@ -37,9 +38,14 @@ class FileSystemCinemaDao : CinemaDao {
         if (!sessionFile.exists()) {
             sessionFile.createNewFile()
         }
+
+        if (session.start.isAfter(session.end)) {
+            throw TimeNoMatchException("Некорректно установленный сеанс. Время начала позже времени конца")
+        }
+
         val sessionContent = jsonMapper.writeValueAsString(session)
         sessionFile.writeText(sessionContent)
-        Cinema.sessionsNames.add(session.name)
+//        Cinema.sessionsNames.add(session.name)
     }
 
     override fun removeSession(sessionName : String) {

@@ -10,6 +10,7 @@ import ru.hse.cinema.project.models.Client
 import ru.hse.cinema.project.models.Session
 import java.text.SimpleDateFormat
 import java.time.LocalDate
+import kotlin.io.path.Path
 
 class FileSystemSessionDao : SessionDao {
 
@@ -97,8 +98,14 @@ class FileSystemSessionDao : SessionDao {
 
     override fun getClientBooks(clientName : String): ArrayList<Pair<Session, Seat>> {
         val result : ArrayList<Pair<Session, Seat>> = arrayListOf()
+        var files : ArrayList<String> = arrayListOf()
+        val dir = Path(DIR_WITH_SESSIONS).toFile()
+        for (file in dir.listFiles()) {
+            val splitPath = file.toString().split("/")
+            files.add(splitPath.last())
+        }
 
-        for (sessionName in Cinema.sessionsNames) {
+        for (sessionName in files) {
             val session = HelpMethods.getSessionByName(sessionName, DIR_WITH_SESSIONS)
             for (seat in session.seats) {
                 if (!seat.isEmpty && seat.client?.name == clientName) {

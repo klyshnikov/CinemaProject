@@ -15,7 +15,12 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class ConsoleApi : Api() {
-    override fun help() : String {
+    override fun commands() : String {
+        println(super.commands())
+        return ""
+    }
+
+    override fun help(): String {
         println(super.help())
         return ""
     }
@@ -72,6 +77,7 @@ class ConsoleApi : Api() {
             print(seat.number)
             print(" ")
         }
+        println()
         return empty
     }
 
@@ -79,13 +85,21 @@ class ConsoleApi : Api() {
         val books = super.getBooks(params)
         println("Текущие брони для данного клиента: ")
         for (bookPair in books) {
-            println("Сеанс ${bookPair.first}, номер места ${bookPair.second}")
+            println("Сеанс ${bookPair.first.name}, номер места ${bookPair.second.number}")
         }
         return books
     }
 
+    override fun check(params: List<String>) {
+        println("Текущие параметры:")
+        println("Имя пользователя $userName")
+        println("Время начала $startTime")
+        println("Время конца $endTime")
+        println("Сеанс: название ${session.name}, кол-во мест ${session.seats.size}, начало ${session.start}, конец ${session.end}\n")
+    }
+
     override fun callHelp(): String {
-        println(super.callHelp())
+        println("Некорректная команда. Для подсказки - "+super.callHelp())
         return ""
     }
 
