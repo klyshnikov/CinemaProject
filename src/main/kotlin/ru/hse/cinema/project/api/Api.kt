@@ -12,10 +12,14 @@ import ru.hse.cinema.project.service.SurveyServiceImpl
 import ru.hse.cinema.project.service.interfaces.BookService
 import ru.hse.cinema.project.service.interfaces.RedactorService
 import ru.hse.cinema.project.service.interfaces.SurveyService
+import ru.hse.cinema.project.verefication.Vereficator
+import ru.hse.cinema.project.verefication.VereficatorImpl
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-open class Api {
+open class Api (
+    public val vereficator : Vereficator
+) {
     var isRunning : Boolean = true
 
     protected val bookService : BookService = BookServiceImpl(FileSystemSessionDao(), FileSystemClientDao(), FileSystemCinemaDao())
@@ -26,6 +30,7 @@ open class Api {
     protected var startTime = LocalDate.now()
     protected var endTime: LocalDate = LocalDate.now()
     protected var session: Session = Session(startTime, endTime, arrayListOf(Seat(0, true, null)), "Shreck", 1)
+
 
     open fun commands() : String {
         val response : String = "Commands:\n\n" +

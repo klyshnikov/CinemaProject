@@ -11,10 +11,13 @@ import ru.hse.cinema.project.service.SurveyServiceImpl
 import ru.hse.cinema.project.service.interfaces.BookService
 import ru.hse.cinema.project.service.interfaces.RedactorService
 import ru.hse.cinema.project.service.interfaces.SurveyService
+import ru.hse.cinema.project.verefication.Vereficator
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class ConsoleApi : Api() {
+class ConsoleApi(vereficator: Vereficator) : Api(
+    vereficator
+) {
     override fun commands() : String {
         println(super.commands())
         return ""
