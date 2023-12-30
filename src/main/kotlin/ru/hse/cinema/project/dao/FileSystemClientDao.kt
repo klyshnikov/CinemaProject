@@ -11,11 +11,13 @@ import ru.hse.cinema.project.models.Session
 import java.nio.charset.Charset
 import kotlin.io.path.Path
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import java.nio.file.Paths
 import java.text.SimpleDateFormat
 
 class FileSystemClientDao : ClientDao {
     companion object {
-        private const val DIR_WITH_SESSIONS = "/home/mihail/javaProjects/CinemaProject/src/main/kotlin/ru/hse/cinema/project/resourses/cinema"
+        private val OSpath = Paths.get("").toAbsolutePath().toString()
+        private val DIR_WITH_SESSIONS = OSpath + "/src/main/kotlin/ru/hse/cinema/project/resourses/cinema"
         private val jsonMapper = ObjectMapper()
     }
 

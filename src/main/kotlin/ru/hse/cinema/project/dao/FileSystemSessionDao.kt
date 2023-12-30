@@ -8,6 +8,7 @@ import ru.hse.cinema.project.dao.interfaces.SessionDao
 import ru.hse.cinema.project.models.Cinema
 import ru.hse.cinema.project.models.Client
 import ru.hse.cinema.project.models.Session
+import java.nio.file.Paths
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import kotlin.io.path.Path
@@ -15,7 +16,8 @@ import kotlin.io.path.Path
 class FileSystemSessionDao : SessionDao {
 
     companion object {
-        private const val DIR_WITH_SESSIONS = "/home/mihail/javaProjects/CinemaProject/src/main/kotlin/ru/hse/cinema/project/resourses/cinema"
+        private val OSpath = Paths.get("").toAbsolutePath().toString()
+        private val DIR_WITH_SESSIONS = OSpath + "/src/main/kotlin/ru/hse/cinema/project/resourses/cinema"
         private val jsonMapper = ObjectMapper()
     }
 

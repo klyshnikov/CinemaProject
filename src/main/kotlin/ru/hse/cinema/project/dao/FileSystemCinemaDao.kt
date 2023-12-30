@@ -17,6 +17,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import ru.hse.cinema.project.dao.exceptions.TimeNoMatchException
 import ru.hse.cinema.project.models.Seat
 import java.io.FileNotFoundException
+import java.nio.file.Paths
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -24,7 +25,8 @@ import kotlin.reflect.jvm.internal.impl.descriptors.Visibilities.Local
 
 class FileSystemCinemaDao : CinemaDao {
     companion object {
-        private const val DIR_WITH_SESSIONS = "/home/mihail/javaProjects/CinemaProject/src/main/kotlin/ru/hse/cinema/project/resourses/cinema"
+        private val OSpath = Paths.get("").toAbsolutePath().toString()
+        private val DIR_WITH_SESSIONS = OSpath + "/src/main/kotlin/ru/hse/cinema/project/resourses/cinema"
         private val jsonMapper = ObjectMapper()
     }
 
